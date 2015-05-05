@@ -106,6 +106,7 @@
     <Folder Include="Mapper\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="sitecore\shell\client\Services\Assets\lib\extensions\validators\notPastDate.js" />
     <None Include="App_Config\Include\Seshat.config" />
     <Content Include="BrochureBuilder.js" />
     <Content Include="BrochureBuilderCreate.js" />
