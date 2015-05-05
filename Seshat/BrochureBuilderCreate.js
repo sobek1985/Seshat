@@ -9,7 +9,7 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
 
         EntityServiceConfig: function () {
             var brochureService = new entityService({
-                url: "/sitecore/api/ssc/BrochureBuilder-Controllers/Brochure"
+                url: "/sitecore/api/ssc/MikeRobbins-Seshat-Controllers/Brochure"
             });
 
 
