@@ -10,11 +10,13 @@ namespace MikeRobbins.Seshat.DataAccess
     {
         private IBrochureMapper _brochureMapper;
         private ISearcher _searcher;
+        private IConfigurationReader _configurationReader;
 
-        public BrochureReader(IBrochureMapper iBrochureMapper, ISearcher iSearcher)
+        public BrochureReader(IBrochureMapper iBrochureMapper, ISearcher iSearcher, IConfigurationReader iConfigurationReader)
         {
             _brochureMapper = iBrochureMapper;
             _searcher = iSearcher;
+            _configurationReader = iConfigurationReader;
         }
 
         public Item GetBrochureItem(ID id)

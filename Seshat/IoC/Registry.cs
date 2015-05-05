@@ -12,7 +12,7 @@ namespace MikeRobbins.Seshat.IoC
             For<Interfaces.IBrochureReader>().Use<BrochureReader>();
             For<Interfaces.ISearcher>().Use<Searcher>();
             For<Interfaces.ISitecoreUtilities>().Use<SitecoreUtilities>();
-            For<Interfaces.IConfigurationReader>().Use<ConfigurationReader>();
+            For<Interfaces.IConfigurationReader>().Singleton().Use<ConfigurationReader>();
         }
     }
 }
