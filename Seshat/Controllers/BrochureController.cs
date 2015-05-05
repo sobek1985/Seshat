@@ -13,9 +13,5 @@ namespace MikeRobbins.Seshat.Controllers
         {
         }
 
-        public BrochureController()
-            : this(new BrochureRespository())
-        {
-        }
     }
 }

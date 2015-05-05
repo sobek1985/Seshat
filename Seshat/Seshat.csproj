@@ -91,6 +91,7 @@
     <Compile Include="IoC\StructureMapDependencyResolver.cs" />
     <Compile Include="MetaData\NotPastDataMetaData.cs" />
     <Compile Include="Models\Brochure.cs" />
+    <Compile Include="Pipelines\Initialize\RegisterIoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BrochureRespository.cs" />
   </ItemGroup>
@@ -105,6 +106,7 @@
     <Folder Include="Mapper\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_Config\Include\Seshat.config" />
     <Content Include="BrochureBuilder.js" />
     <Content Include="BrochureBuilderCreate.js" />
   </ItemGroup>
