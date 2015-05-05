@@ -88,6 +88,8 @@
     <Compile Include="Attributes\NotPastDateAttribute.cs" />
     <Compile Include="Controllers\BrochureController.cs" />
     <Compile Include="DataAccess\BrochureReader.cs" />
+    <Compile Include="DataAccess\ConfigurationReader.cs" />
+    <Compile Include="Interfaces\IConfigurationReader.cs" />
     <Compile Include="Interfaces\ISearcher.cs" />
     <Compile Include="DataAccess\Searcher.cs" />
     <Compile Include="Interfaces\IBrochureReader.cs" />
@@ -96,6 +98,7 @@
     <Compile Include="Mapper\BrochureMapper.cs" />
     <Compile Include="Interfaces\IBrochureMapper.cs" />
     <Compile Include="MetaData\NotPastDataMetaData.cs" />
+    <Compile Include="Models\ApplicationConfiguration.cs" />
     <Compile Include="Models\Brochure.cs" />
     <Compile Include="Pipelines\Initialize\RegisterIoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -19,5 +19,10 @@ namespace MikeRobbins.Seshat.Mapper
 
             return brochure;
         }
+
+        public Brochure GetBrochure(SearchResultItem searchResultItem)
+        {
+
+        }
     }
 }

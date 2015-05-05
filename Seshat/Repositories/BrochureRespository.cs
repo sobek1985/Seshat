@@ -21,8 +21,7 @@ namespace MikeRobbins.Seshat.Repositories
 
         public IQueryable<Brochure> GetAll()
         {
-           
-
+            var brochures = _brochureReader.GetAllBrochures();
             return brochures.AsQueryable();
         }
 

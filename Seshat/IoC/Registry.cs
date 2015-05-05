@@ -1,5 +1,6 @@
 ﻿using MikeRobbins.Seshat.DataAccess;
 using MikeRobbins.Seshat.Mapper;
+using MikeRobbins.Seshat.Utilities;
 
 namespace MikeRobbins.Seshat.IoC
 {
@@ -9,6 +10,9 @@ namespace MikeRobbins.Seshat.IoC
         {
             For<Interfaces.IBrochureMapper>().Use<BrochureMapper>();
             For<Interfaces.IBrochureReader>().Use<BrochureReader>();
+            For<Interfaces.ISearcher>().Use<Searcher>();
+            For<Interfaces.ISitecoreUtilities>().Use<SitecoreUtilities>();
+            For<Interfaces.IConfigurationReader>().Use<ConfigurationReader>();
         }
     }
 }

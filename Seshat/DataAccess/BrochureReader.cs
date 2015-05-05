@@ -24,28 +24,16 @@ namespace MikeRobbins.Seshat.DataAccess
 
         public List<Brochure> GetAllBrochures()
         {
-            _searcher.SearchByTemplate("sitecore_master_index",)
-
             var brochures = new List<Brochure>();
 
-            var master = Sitecore.Data.Database.GetDatabase("master");
+            var searchResults = _searcher.SearchByTemplate("sitecore_master_index", );
 
-            var folder = master.GetItem(new ID("{CA002812-8C24-4AD5-8843-00492FAEC74D}"));
-
-            foreach (Item item in folder.Children)
+            foreach (var searchResultItem in searchResults)
             {
-                var brochure = new Brochure()
-                {
-                    Id = item.ID.ToString(),
-                    ImagePath = "~/icon/Office/48x48/document_attachment.png",
-                    Title = item["Title"],
-                    Introduction = item["Introduction"],
-                    CaseStudy = ((Sitecore.Data.Fields.LookupField)item.Fields["Case Study"]).TargetID.Guid,
-                    ImageGallery = item["Image Gallery"],
-                };
-
-                brochures.Add(brochure);
+                brochures.Add(_brochureMapper.GetBrochure(searchResultItem));
             }
+
+            return brochures;
         }
 
         public Brochure GetBrochure(ID id)
