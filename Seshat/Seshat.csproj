@@ -87,24 +87,28 @@
   <ItemGroup>
     <Compile Include="Attributes\NotPastDateAttribute.cs" />
     <Compile Include="Controllers\BrochureController.cs" />
+    <Compile Include="DataAccess\BrochureReader.cs" />
+    <Compile Include="Interfaces\ISearcher.cs" />
+    <Compile Include="DataAccess\Searcher.cs" />
+    <Compile Include="Interfaces\IBrochureReader.cs" />
     <Compile Include="IoC\Registry.cs" />
     <Compile Include="IoC\StructureMapDependencyResolver.cs" />
+    <Compile Include="Mapper\BrochureMapper.cs" />
+    <Compile Include="Interfaces\IBrochureMapper.cs" />
     <Compile Include="MetaData\NotPastDataMetaData.cs" />
     <Compile Include="Models\Brochure.cs" />
     <Compile Include="Pipelines\Initialize\RegisterIoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BrochureRespository.cs" />
+    <Compile Include="Interfaces\ISitecoreUtilities.cs" />
+    <Compile Include="Utilities\SitecoreUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="client\MikeRobbins\Seshat\Tiles\BrochureTile.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataAccess\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Mapper\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="sitecore\shell\client\Services\Assets\lib\extensions\validators\notPastDate.js" />
     <None Include="App_Config\Include\Seshat.config" />
