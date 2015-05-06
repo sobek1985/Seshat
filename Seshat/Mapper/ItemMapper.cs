@@ -12,6 +12,8 @@ namespace MikeRobbins.Seshat.Mapper
         {
             T returnValue = (T)Activator.CreateInstance(typeof(T));
 
+            source.Fields.ReadAll();
+
             foreach (Sitecore.Data.Fields.Field field in source.Fields)
             {
                 var property = typeof(T).GetProperty(field.Name.Replace(" ", ""));
