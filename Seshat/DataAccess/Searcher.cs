@@ -13,11 +13,9 @@ namespace MikeRobbins.Seshat.DataAccess
         {
             using (var context = Sitecore.ContentSearch.ContentSearchManager.GetIndex(indexName).CreateSearchContext())
             {
-                var culture = Sitecore.Context.Language.CultureInfo;
+                var queryable = context.GetQueryable<SearchResultItem>();
 
-                var queryable = context.GetQueryable<SearchResultItem>(new CultureExecutionContext(culture));
-
-                var query = queryable.Where(x => x.TemplateId == templateId);
+                var query = queryable.Where(x => x.TemplateId == templateId && x.Name != "__Standard Values");
 
                 return query.ToList();
             }
@@ -27,11 +25,9 @@ namespace MikeRobbins.Seshat.DataAccess
         {
             using (var context = Sitecore.ContentSearch.ContentSearchManager.GetIndex(indexName).CreateSearchContext())
             {
-                var culture = Sitecore.Context.Language.CultureInfo;
+                var queryable = context.GetQueryable<SearchResultItem>();
 
-                var queryable = context.GetQueryable<SearchResultItem>(new CultureExecutionContext(culture));
-
-                var result = queryable.FirstOrDefault(x => x.TemplateId == templateId);
+                var result = queryable.FirstOrDefault(x => x.TemplateId == templateId && x.Name != "__Standard Values");
 
                 return result;
             }
