@@ -19,9 +19,17 @@ namespace MikeRobbins.Seshat.DataAccess
 
         public ApplicationConfiguration GetConfiguration()
         {
+            ApplicationConfiguration applicationConfig = null;
+
             var result = _searcher.SearchSingleItemByTemplate("sitecore_master_index", _configurationTemplateId);
 
-            return _itemMapper.Map<ApplicationConfiguration, SearchResultItem>(result);
+            if (result!=null)
+            {
+                var item = result.GetItem();
+                applicationConfig= _itemMapper.MapItem<ApplicationConfiguration>(item);
+            }
+
+            return applicationConfig;
         }
 
 
