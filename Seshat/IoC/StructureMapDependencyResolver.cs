@@ -19,7 +19,6 @@ namespace MikeRobbins.Seshat.IoC
             this._container = container;
         }
 
-
         public void Dispose()
         {
             _container.Dispose();

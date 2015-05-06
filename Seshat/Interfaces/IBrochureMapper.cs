@@ -1,4 +1,5 @@
 ﻿using MikeRobbins.Seshat.Models;
+using Sitecore.ContentSearch.SearchTypes;
 using Sitecore.Data.Items;
 
 namespace MikeRobbins.Seshat.Interfaces

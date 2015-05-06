@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using MikeRobbins.Seshat.Interfaces;
 using MikeRobbins.Seshat.Models;
 using Sitecore.Data;
@@ -26,23 +27,18 @@ namespace MikeRobbins.Seshat.DataAccess
 
         public List<Brochure> GetAllBrochures()
         {
-            var brochures = new List<Brochure>();
+            var config = _configurationReader.GetConfiguration();
 
-            var searchResults = _searcher.SearchByTemplate("sitecore_master_index", );
+            var searchResults = _searcher.SearchByTemplate(config.SearchIndex, config.BrochureTemplateId);
 
-            foreach (var searchResultItem in searchResults)
-            {
-                brochures.Add(_brochureMapper.GetBrochure(searchResultItem));
-            }
-
-            return brochures;
+            return searchResults.Select(searchResultItem => _brochureMapper.GetBrochure(searchResultItem)).ToList();
         }
 
         public Brochure GetBrochure(ID id)
         {
             var item = GetBrochureItem(id);
-            return _brochureMapper.GetBrochure(item);
-        }
 
+            return item != null ? _brochureMapper.GetBrochure(item) : null;
+        }
     }
 }

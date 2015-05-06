@@ -1,5 +1,6 @@
 ﻿using MikeRobbins.Seshat.Interfaces;
 using MikeRobbins.Seshat.Models;
+using Sitecore.ContentSearch.SearchTypes;
 using Sitecore.Data.Items;
 
 namespace MikeRobbins.Seshat.Mapper
@@ -22,7 +23,7 @@ namespace MikeRobbins.Seshat.Mapper
 
         public Brochure GetBrochure(SearchResultItem searchResultItem)
         {
-
+            return null;
         }
     }
 }

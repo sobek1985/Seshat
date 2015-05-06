@@ -34,6 +34,12 @@
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Sitecore.ContentSearch">
+      <HintPath>bin\Sitecore.ContentSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Linq">
+      <HintPath>bin\Sitecore.ContentSearch.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sitecore.Dlls.8.0.141212.8.0.141212\lib\Sitecore.Kernel.dll</HintPath>
       <Private>True</Private>
@@ -97,6 +103,8 @@
     <Compile Include="IoC\StructureMapDependencyResolver.cs" />
     <Compile Include="Mapper\BrochureMapper.cs" />
     <Compile Include="Interfaces\IBrochureMapper.cs" />
+    <Compile Include="Interfaces\IItemMapper.cs" />
+    <Compile Include="Mapper\ItemMapper.cs" />
     <Compile Include="MetaData\NotPastDataMetaData.cs" />
     <Compile Include="Models\ApplicationConfiguration.cs" />
     <Compile Include="Models\Brochure.cs" />
