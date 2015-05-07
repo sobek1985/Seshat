@@ -14,16 +14,28 @@ namespace MikeRobbins.Seshat.Mapper
             var dateField = (Sitecore.Data.Fields.DateField)item.Fields["Date"];
 
             brochure.Title = item["Title"];
-            brochure.Date = dateField.DateTime;
+
+            if (dateField != null)
+            {
+                brochure.Date = dateField.DateTime;
+            }
+
             brochure.Id = item.ID.ToString();
             brochure.Url = item.Paths.ContentPath;
+            brochure.ImagePath = "/temp/IconCache/" +item.Appearance.Icon;
 
             return brochure;
         }
 
         public Brochure GetBrochure(SearchResultItem searchResultItem)
         {
-            return null;
+            Brochure brochure = null;
+
+            var item = searchResultItem.GetItem();
+
+            brochure = GetBrochure(item);
+
+            return brochure;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace MikeRobbins.Seshat.DataAccess
 {
     public class Searcher : ISearcher
     {
-        public List<SearchResultItem> SearchByTemplate(string indexName, ID templateId)
+        public List<SearchResultItem> SearchByTemplate(string indexName, ID templateId) 
         {
             using (var context = Sitecore.ContentSearch.ContentSearchManager.GetIndex(indexName).CreateSearchContext())
             {

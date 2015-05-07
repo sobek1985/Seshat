@@ -27,14 +27,18 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
 
             var datasource = this.DataSource;
 
-            var brochureService  = this.EntityServiceConfig();
+            var brochureService = this.EntityServiceConfig();
 
             var result = brochureService.fetchEntities().execute().then(function (brochures) {
                 datasource.viewModel.items(brochures);
             });
         },
 
-     
+        EditBrochure: function () {
+            var selectedItemId = this.lcBrochure.viewModel.selectedItemId();
+
+            window.location = location.protocol + '//' + location.hostname + "/sitecore/client/MikeRobbins/Applications/Seshat/BrochureTemplate?id=" + selectedItemId;
+        },
 
 
     });

@@ -43,7 +43,7 @@ namespace MikeRobbins.Seshat.Repositories
             newItem["Title"] = entity.Title;
             newItem["Introduction"] = entity.Introduction;
             newItem["Case Study"] = entity.CaseStudy.ToString();
-            newItem["Image Gallery"] = entity.ImageGallery;
+            newItem["Image Gallery"] = entity.Image;
 
             newItem.Editing.EndEdit();
         }
