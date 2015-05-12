@@ -1,6 +1,7 @@
 ﻿require.config({
     paths: {
-        entityService: "/sitecore/shell/client/Services/Assets/lib/entityservice"
+        entityService: "/sitecore/shell/client/Services/Assets/lib/entityservice",
+        unit: "/sitecore/shell/client/MikeRobbins/lib/unit"
     }
 });
 
