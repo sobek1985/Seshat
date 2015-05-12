@@ -6,7 +6,6 @@
 
 define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore, $, _, entityService) {
     var BrochureBuilderCreate = Sitecore.Definitions.App.extend({
-
         EntityServiceConfig: function () {
             var brochureService = new entityService({
                 url: "/sitecore/api/ssc/MikeRobbins-Seshat-Controllers/Brochure"
@@ -16,6 +15,20 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
             return brochureService;
         },
 
+        LoadBrochure: function () {
+            var id = this.GetParameterByName('id');
+
+            if (id!=null) {
+                var brochureService = this.EntityServiceConfig();
+
+                var result = brochureService.fetchEntity(selectedId).execute().then(function (brochure) {
+                    self.tbID.viewModel.text(brochure.Id);
+                    self.tbTitle.viewModel.text(brochure.Title);
+                    self.tbDescription.viewModel.text(brochure.Description);
+                    self.dpDate.viewModel.setDate(brochure.Date);
+                });
+            }
+        },
 
         SaveBrochure: function () {
             var brochureService = this.EntityServiceConfig();
@@ -27,17 +40,17 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
                 ImageGallery: this.tvImageGallery.viewModel.checkedItemIds()
             };
 
-          //  var self = this;
+            var self = this;
 
-            var result = brochureService.create(brochure).execute().then(function (newBrochure) {
-               // self.messageBar.addMessage("notification", { text: "Item created successfully", actions: [], closable: true, temporary: true });
-              //  self.ResetFields();
-             //   self.GetNewsArticles();
+            brochureService.create(brochure).execute().then(function (newBrochure) {
+                self.messageBar.addMessage("notification", { text: "Item created successfully", actions: [], closable: true, temporary: true });
+                self.ResetFields();
+                self.GetNewsArticles();
             });
 
         },
 
-        ExportPdf: function() {
+        ExportPdf: function () {
             var brochureService = this.EntityServiceConfig();
 
             var brochure = {
@@ -55,12 +68,17 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
                 contentType: 'application/json',
                 context: this,
                 success: function (data) {
-                    window.location =  "http://cardano8//temp//"+data;
+                    window.location = "http://cardano8//temp//" + data;
                 }
             });
+        },
+
+        GetParameterByName: function (name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
-
-
     });
 
     return BrochureBuilderCreate;

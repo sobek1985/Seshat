@@ -24,12 +24,11 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
         },
 
         GetBrochures: function () {
-
             var datasource = this.DataSource;
 
             var brochureService = this.EntityServiceConfig();
 
-            var result = brochureService.fetchEntities().execute().then(function (brochures) {
+            brochureService.fetchEntities().execute().then(function (brochures) {
                 datasource.viewModel.items(brochures);
             });
         },
@@ -39,6 +38,21 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
 
             window.location = location.protocol + '//' + location.hostname + "/sitecore/client/MikeRobbins/Applications/Seshat/BrochureTemplate?id=" + selectedItemId;
         },
+
+        DeleteBrochure: function () {
+            var brochureService = this.EntityServiceConfig();
+
+            var selectedItemId = this.lcBrochure.viewModel.selectedItemId();
+
+            var self = this;
+
+            brochureService.fetchEntity(selectedItemId).execute().then(function (brochure) {
+                brochure.destroy().then(function () {
+                    self.MessageBar.addMessage("notification", { text: "Item deleted successfully", actions: [], closable: true, temporary: true });
+                    self.GetBrochures();
+                });
+            });
+        }
 
 
     });
