@@ -7,6 +7,11 @@
 
 define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore, $, _, entityService) {
     var BrochureBuilderCreate = Sitecore.Definitions.App.extend({
+
+        initialized: function () {
+            this.LoadBrochure();
+        },
+
         EntityServiceConfig: function () {
             var brochureService = new entityService({
                 url: "/sitecore/api/ssc/MikeRobbins-Seshat-Controllers/Brochure"
@@ -19,14 +24,15 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
         LoadBrochure: function () {
             var id = this.GetParameterByName('id');
 
-            if (id!=null) {
+            var self = this;
+
+            if (id != null) {
                 var brochureService = this.EntityServiceConfig();
 
-                var result = brochureService.fetchEntity(selectedId).execute().then(function (brochure) {
-                    self.tbID.viewModel.text(brochure.Id);
+                brochureService.fetchEntity(id).execute().then(function (brochure) {
                     self.tbTitle.viewModel.text(brochure.Title);
-                    self.tbDescription.viewModel.text(brochure.Description);
-                    self.dpDate.viewModel.setDate(brochure.Date);
+                    self.tbIntroduction.viewModel.text(brochure.Introduction);
+                    self.dpDate.set(brochure.Date);
                 });
             }
         },
