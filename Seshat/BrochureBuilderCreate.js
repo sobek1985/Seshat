@@ -5,7 +5,7 @@
     }
 });
 
-define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore, $, _, entityService) {
+define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (Sitecore, $, _, entityService, unit) {
     var BrochureBuilderCreate = Sitecore.Definitions.App.extend({
 
         initialized: function () {
@@ -50,9 +50,15 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
             var self = this;
 
             brochureService.create(brochure).execute().then(function (newBrochure) {
+                newBrochure.should.be.an.instanceOf(entityService.Entity);
+                newBrochure.isNew.should.be.false; // this is because its created by the server rather than JS, so its not new.
+                newBrochure.should.have.a.property("Title").and.be.an.String;
+
                 self.messageBar.addMessage("notification", { text: "Item created successfully", actions: [], closable: true, temporary: true });
                 self.ResetFields();
                 self.GetNewsArticles();
+            }).fail(function(error) {
+                self.messageBar.addMessage("error", { text: error.message, actions: [], closable: true, temporary: true });
             });
 
         },
