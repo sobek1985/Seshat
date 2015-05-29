@@ -26,7 +26,7 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
 
             var self = this;
 
-            if (id != null) {
+            if (id !== "") {
                 var brochureService = this.EntityServiceConfig();
 
                 brochureService.fetchEntity(id).execute().then(function (brochure) {
@@ -73,15 +73,14 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                 ImageGallery: this.tvImageGallery.viewModel.checkedItemIds()
             };
 
-
             $.ajax({
-                url: "/sitecore/api/ssc/BrochureBuilder-Controllers/Brochure/1/GeneratePDF",
+                url: "/sitecore/api/ssc/MikeRobbins-Seshat-Controllers/Brochure/1/GeneratePdf",
                 type: "POST",
                 data: JSON.stringify(brochure),
                 contentType: 'application/json',
                 context: this,
                 success: function (data) {
-                    window.location = "http://cardano8//temp//" + data;
+                    window.location = "http://mikerobbins8u2//temp//" + data;
                 }
             });
         },

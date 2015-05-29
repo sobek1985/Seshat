@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using MikeRobbins.Seshat.Interfaces;
 using MikeRobbins.Seshat.Models;
@@ -11,12 +10,14 @@ namespace MikeRobbins.Seshat.Repositories
     public class BrochureRespository : Sitecore.Services.Core.IRepository<Brochure>
     {
         private IBrochureReader _brochureReader;
+        private IBrochureWriter _brochureWriter;
         private ISitecoreUtilities _sitecoreUtilities;
 
-        public BrochureRespository(IBrochureReader brochureReader, ISitecoreUtilities sitecoreUtilities)
+        public BrochureRespository(IBrochureReader brochureReader, IBrochureWriter brochureWriter, ISitecoreUtilities sitecoreUtilities)
         {
             _brochureReader = brochureReader;
             _sitecoreUtilities = sitecoreUtilities;
+            _brochureWriter = brochureWriter;
         }
 
         public IQueryable<Brochure> GetAll()
@@ -33,19 +34,7 @@ namespace MikeRobbins.Seshat.Repositories
 
         public void Add(Brochure entity)
         {
-            var master = Sitecore.Data.Database.GetDatabase("master");
-            var folder = master.GetItem(new ID("{CA002812-8C24-4AD5-8843-00492FAEC74D}"));
-
-            var newItem = Sitecore.Data.Items.ItemUtil.AddFromTemplate(entity.Title, "User Defined/MikeRobbins/Content/Brochure", folder);
-
-            newItem.Editing.BeginEdit();
-
-            newItem["Title"] = entity.Title;
-            newItem["Introduction"] = entity.Introduction;
-            newItem["Case Study"] = entity.CaseStudy.ToString();
-            newItem["Image Gallery"] = entity.Image;
-
-            newItem.Editing.EndEdit();
+            _brochureWriter.SaveBrochure(entity);
         }
 
         public bool Exists(Brochure entity)

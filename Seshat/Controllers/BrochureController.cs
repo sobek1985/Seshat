@@ -1,4 +1,7 @@
-﻿using MikeRobbins.Seshat.IoC;
+﻿using System.Web;
+using System.Web.Http;
+using MikeRobbins.Seshat.Interfaces;
+using MikeRobbins.Seshat.IoC;
 using MikeRobbins.Seshat.Models;
 using MikeRobbins.Seshat.Repositories;
 using Sitecore.Services.Core;
@@ -10,25 +13,16 @@ namespace MikeRobbins.Seshat.Controllers
     [ServicesController]
     public class BrochureController : EntityService<Brochure>
     {
-        private Container _container;
-
-        public static Container Container
-        {
-            get
-            {
-                return new Container(new Registry());
-            }
-        }
-
-        public BrochureController(IRepository<Brochure> repository)
-            : base(repository)
+        public BrochureController(IRepository<Brochure> repository) : base(repository)
         {
         }
 
-        public BrochureController()
-            : this(Container.GetInstance<IRepository<Brochure>>())
+        [HttpPost]
+        public string GeneratePdf(Brochure brochure)
         {
+            var export = (IExport)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IExport));
+           
+            return export.GenerateExport(brochure);
         }
-
     }
 }
