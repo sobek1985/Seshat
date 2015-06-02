@@ -8,15 +8,15 @@ namespace MikeRobbins.Seshat.DataAccess
     public class BrochureWriter : IBrochureWriter
     {
         //Todo: Remove these
-        private ID _brochureFolder = new ID("{CA002812-8C24-4AD5-8843-00492FAEC74D}");
-        private string _template = "User Defined/MikeRobbins/Content/Brochure";
+        private ID _brochureFolder = new ID("{96101BB9-9BE0-40DB-9DC7-478B8A6CC72D}");
+        private TemplateID _template = new TemplateID(new ID("{0CCF0C35-3A08-4695-9F0D-F25150CC5DF4}"));
 
         public void SaveBrochure(Brochure brochure)
         {
             var master = Sitecore.Data.Database.GetDatabase("master");
             var folder = master.GetItem(_brochureFolder);
 
-            var newItem = Sitecore.Data.Items.ItemUtil.AddFromTemplate(brochure.Title, _template, folder);
+            var newItem = folder.Add(brochure.Title, _template);
 
             newItem.Editing.BeginEdit();
 

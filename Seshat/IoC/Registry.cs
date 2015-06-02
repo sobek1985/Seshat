@@ -21,6 +21,7 @@ namespace MikeRobbins.Seshat.IoC
             For<Interfaces.IExport>().Use<ExportToPdf>();
             For<Interfaces.IItemReader>().Use<ItemReader>();
             For<Interfaces.IBrochureUpdater>().Use<BrochureUpdater>();
+            For<Interfaces.IFieldUpdater>().Use<FieldUpdater>();
         }
     }
 }

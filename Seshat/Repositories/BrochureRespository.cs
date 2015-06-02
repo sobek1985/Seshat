@@ -41,9 +41,15 @@ namespace MikeRobbins.Seshat.Repositories
 
         public bool Exists(Brochure entity)
         {
-            var sId = _sitecoreUtilities.ParseId(entity.itemId);
+            var exists = false;
 
-            return _brochureReader.BrochureExists(sId);
+            if (!string.IsNullOrEmpty(entity.itemId))
+            {
+                var sId = _sitecoreUtilities.ParseId(entity.itemId);
+                exists = _brochureReader.BrochureExists(sId);
+            }
+
+            return exists;
         }
 
         public void Update(Brochure entity)
