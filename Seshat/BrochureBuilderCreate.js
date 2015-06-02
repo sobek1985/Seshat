@@ -8,6 +8,19 @@
 define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (Sitecore, $, _, entityService, unit) {
     var BrochureBuilderCreate = Sitecore.Definitions.App.extend({
 
+        initialize: function () {
+            entityService.use(function (data, next) {
+                if (data.Id) {
+                    entityService.utils.request({ url: "/sitecore/api/ssc/MikeRobbins-Seshat-Controllers/Brochure/" + data.Id, type: "GET" }).then(function (res) {
+                        next(null, res);
+                    });
+                }
+                else {
+                    next(null, data);
+                }
+            });
+        },
+
         initialized: function () {
             this.LoadBrochure();
         },
@@ -57,7 +70,7 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                 self.messageBar.addMessage("notification", { text: "Item created successfully", actions: [], closable: true, temporary: true });
                 self.ResetFields();
                 self.GetNewsArticles();
-            }).fail(function(error) {
+            }).fail(function (error) {
                 self.messageBar.addMessage("error", { text: error.message, actions: [], closable: true, temporary: true });
             });
 

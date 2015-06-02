@@ -10,14 +10,16 @@ namespace MikeRobbins.Seshat.Repositories
     public class BrochureRespository : Sitecore.Services.Core.IRepository<Brochure>
     {
         private IBrochureReader _brochureReader;
+        private IBrochureUpdater _brochureUpdater;
         private IBrochureWriter _brochureWriter;
         private ISitecoreUtilities _sitecoreUtilities;
 
-        public BrochureRespository(IBrochureReader brochureReader, IBrochureWriter brochureWriter, ISitecoreUtilities sitecoreUtilities)
+        public BrochureRespository(IBrochureReader brochureReader, IBrochureUpdater brochureUpdater, IBrochureWriter brochureWriter, ISitecoreUtilities sitecoreUtilities)
         {
             _brochureReader = brochureReader;
-            _sitecoreUtilities = sitecoreUtilities;
+            _brochureUpdater = brochureUpdater;
             _brochureWriter = brochureWriter;
+            _sitecoreUtilities = sitecoreUtilities;
         }
 
         public IQueryable<Brochure> GetAll()
@@ -39,17 +41,19 @@ namespace MikeRobbins.Seshat.Repositories
 
         public bool Exists(Brochure entity)
         {
-            return false;
+            var sId = _sitecoreUtilities.ParseId(entity.itemId);
+
+            return _brochureReader.BrochureExists(sId);
         }
 
         public void Update(Brochure entity)
         {
-            throw new NotImplementedException();
+            _brochureUpdater.UpdateBrochure(entity);
         }
 
         public void Delete(Brochure entity)
         {
-            throw new NotImplementedException();
+            _brochureUpdater.DeleteBrochure(entity);
         }
     }
 }

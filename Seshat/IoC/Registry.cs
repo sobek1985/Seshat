@@ -19,6 +19,8 @@ namespace MikeRobbins.Seshat.IoC
             For<Interfaces.IItemMapper>().Use<ItemMapper>();
             For(typeof(IRepository<>)).Use(typeof(MikeRobbins.Seshat.Repositories.BrochureRespository));
             For<Interfaces.IExport>().Use<ExportToPdf>();
+            For<Interfaces.IItemReader>().Use<ItemReader>();
+            For<Interfaces.IBrochureUpdater>().Use<BrochureUpdater>();
         }
     }
 }

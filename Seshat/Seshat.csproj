@@ -98,9 +98,15 @@
   <ItemGroup>
     <Compile Include="Attributes\NotPastDateAttribute.cs" />
     <Compile Include="Controllers\BrochureController.cs" />
+    <Compile Include="DataAccess\BrochureUpdater.cs" />
     <Compile Include="DataAccess\BrochureReader.cs" />
     <Compile Include="DataAccess\BrochureWriter.cs" />
     <Compile Include="DataAccess\ConfigurationReader.cs" />
+    <Compile Include="DataAccess\FieldUpdater.cs" />
+    <Compile Include="Interfaces\IBrochureUpdater.cs" />
+    <Compile Include="Interfaces\IFieldUpdater.cs" />
+    <Compile Include="Interfaces\IItemReader.cs" />
+    <Compile Include="DataAccess\ItemReader.cs" />
     <Compile Include="Interfaces\IBrochureWriter.cs" />
     <Compile Include="Export\ExportToPdf.cs" />
     <Compile Include="Interfaces\IExport.cs" />
@@ -137,6 +143,10 @@
     <Content Include="BrochureBuilderCreate.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Q /Y "$(TargetDir)$(TargetName).*" "C:\inetpub\wwwroot\MikeRobbins8u2\website\bin\"
+xcopy /Q /Y "$(ProjectDir)*.js" "C:\inetpub\wwwroot\MikeRobbins8u2\website\sitecore\shell\client\MikeRobbins\Seshat\"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -12,17 +12,14 @@ namespace MikeRobbins.Seshat.DataAccess
         private IBrochureMapper _brochureMapper;
         private ISearcher _searcher;
         private IConfigurationReader _configurationReader;
+        private IItemReader _itemReader;
 
-        public BrochureReader(IBrochureMapper iBrochureMapper, ISearcher iSearcher, IConfigurationReader iConfigurationReader)
+        public BrochureReader(IBrochureMapper iBrochureMapper, ISearcher iSearcher, IConfigurationReader iConfigurationReader, IItemReader iItemReader)
         {
             _brochureMapper = iBrochureMapper;
             _searcher = iSearcher;
             _configurationReader = iConfigurationReader;
-        }
-
-        public Item GetBrochureItem(ID id)
-        {
-            return Sitecore.Data.Database.GetDatabase("master").GetItem(id);
+            _itemReader = iItemReader;
         }
 
         public List<Brochure> GetAllBrochures()
@@ -36,9 +33,16 @@ namespace MikeRobbins.Seshat.DataAccess
 
         public Brochure GetBrochure(ID id)
         {
-            var item = GetBrochureItem(id);
+            var item = _itemReader.GetItem(id);
 
             return item != null ? _brochureMapper.GetBrochure(item) : null;
+        }
+
+        public bool BrochureExists(ID id)
+        {
+            var item = _itemReader.GetItem(id);
+
+            return item != null;
         }
     }
 }

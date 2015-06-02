@@ -7,6 +7,7 @@ namespace MikeRobbins.Seshat.Interfaces
     public interface IBrochureReader
     {
         List<Brochure> GetAllBrochures();
-        Brochure GetBrochure(ID id );
+        Brochure GetBrochure(ID id);
+        bool BrochureExists(ID id);
     }
 }
