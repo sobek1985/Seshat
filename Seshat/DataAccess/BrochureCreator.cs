@@ -25,6 +25,8 @@ namespace MikeRobbins.Seshat.DataAccess
 
             var newItem = folder.Add(brochure.Title.Trim(), _template);
 
+            brochure.Id = newItem.ID.ToString();
+
             _iFieldUpdater.AddFieldsToItem(newItem, brochure);
         }
     }

@@ -41,15 +41,19 @@ namespace MikeRobbins.Seshat.Export
                 doc.Add(new Paragraph(caseStudy["Solution"]));
             }
 
-            foreach (var id in brochure.Images)
+
+            if (brochure.Images != null)
             {
-                var item = master.GetItem(new ID(id));
-                var mediaItem = (MediaItem)item;
+                foreach (var id in brochure.Images)
+                {
+                    var item = master.GetItem(new ID(id));
+                    var mediaItem = (MediaItem)item;
 
-                var imageurl = Sitecore.Resources.Media.MediaManager.GetMediaUrl(mediaItem);
-                iTextSharp.text.Image myImg = iTextSharp.text.Image.GetInstance(HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/" + imageurl);
+                    var imageurl = Sitecore.Resources.Media.MediaManager.GetMediaUrl(mediaItem);
+                    iTextSharp.text.Image myImg = iTextSharp.text.Image.GetInstance(HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Host + "/" + imageurl);
 
-                doc.Add(myImg);
+                    doc.Add(myImg);
+                }
             }
 
             doc.Close();
