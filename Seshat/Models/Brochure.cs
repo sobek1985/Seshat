@@ -22,7 +22,7 @@ namespace MikeRobbins.Seshat.Models
         public Guid CaseStudy { get; set; }
 
         public List<Guid> Images { get; set; }
-   
+
         [NotPastDate(ErrorMessage = "Date must be in the past")]
         public DateTime Date { get; set; }
     }

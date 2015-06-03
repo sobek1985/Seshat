@@ -12,7 +12,7 @@ namespace MikeRobbins.Seshat.IoC
         {
             For<Interfaces.IBrochureMapper>().Use<BrochureMapper>();
             For<Interfaces.IBrochureReader>().Use<BrochureReader>();
-            For<Interfaces.IBrochureWriter>().Use<BrochureWriter>();
+            For<Interfaces.IBrochureCreator>().Use<BrochureCreator>();
             For<Interfaces.ISearcher>().Use<Searcher>();
             For<Interfaces.ISitecoreUtilities>().Use<SitecoreUtilities>();
             For<Interfaces.IConfigurationReader>().Use<ConfigurationReader>().Singleton();

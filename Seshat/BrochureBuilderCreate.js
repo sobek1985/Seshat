@@ -45,19 +45,60 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                 brochureService.fetchEntity(id).execute().then(function (brochure) {
                     self.tbTitle.viewModel.text(brochure.Title);
                     self.tbIntroduction.viewModel.text(brochure.Introduction);
+
+                    //  TODO: Wire these up                  self.tvCaseStudy
+                    //      self.tvImages
                     self.dpDate.set(brochure.Date);
                 });
             }
         },
 
         SaveBrochure: function () {
+
+            var id = this.GetParameterByName('id');
+
+            if (id !== "") {
+                this.UpdateBrochure(id);
+
+            } else {
+                this.CreateBrochure();
+            }
+        },
+
+        UpdateBrochure: function (id) {
+            var brochureService = this.EntityServiceConfig();
+
+            var self = this;
+
+            brochureService.fetchEntity(id).execute().then(function (brochure) {
+
+                brochure.Title = self.tbTitle.viewModel.text();
+                brochure.Introduction = self.tbIntroduction.viewModel.text();
+                brochure.CaseStudy = self.tvCaseStudy.viewModel.checkedItemIds();
+                brochure.Images = self.tvImageGallery.viewModel.checkedItemIds().split("|");
+                brochure.Date = self.dpDate.viewModel.getDate();
+
+                brochure.on('save', function () {
+                    self.UpdateSuccessful(self);
+                });
+
+                brochure.save().execute();
+            });
+        },
+
+        UpdateSuccessful: function(self) {
+            self.messageBar.addMessage("notification", { text: "Item updated successfully", actions: [], closable: true, temporary: true });
+        },
+
+        CreateBrochure: function () {
             var brochureService = this.EntityServiceConfig();
 
             var brochure = {
                 Title: this.tbTitle.viewModel.text(),
                 Introduction: this.tbIntroduction.viewModel.text(),
                 CaseStudy: this.tvCaseStudy.viewModel.checkedItemIds(),
-                ImageGallery: this.tvImageGallery.viewModel.checkedItemIds()
+                Images: this.tvImageGallery.viewModel.checkedItemIds().split("|"),
+                Date: this.dpDate.viewModel.getDate()
             };
 
             var self = this;
@@ -70,6 +111,8 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                 self.messageBar.addMessage("notification", { text: "Item created successfully", actions: [], closable: true, temporary: true });
                 self.ResetFields();
                 self.GetNewsArticles();
+
+
             }).fail(function (error) {
                 self.messageBar.addMessage("error", { text: error.message, actions: [], closable: true, temporary: true });
             });

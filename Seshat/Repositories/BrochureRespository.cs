@@ -11,14 +11,14 @@ namespace MikeRobbins.Seshat.Repositories
     {
         private IBrochureReader _brochureReader;
         private IBrochureUpdater _brochureUpdater;
-        private IBrochureWriter _brochureWriter;
+        private IBrochureCreator _brochureCreator;
         private ISitecoreUtilities _sitecoreUtilities;
 
-        public BrochureRespository(IBrochureReader brochureReader, IBrochureUpdater brochureUpdater, IBrochureWriter brochureWriter, ISitecoreUtilities sitecoreUtilities)
+        public BrochureRespository(IBrochureReader brochureReader, IBrochureUpdater brochureUpdater, IBrochureCreator brochureCreator, ISitecoreUtilities sitecoreUtilities)
         {
             _brochureReader = brochureReader;
             _brochureUpdater = brochureUpdater;
-            _brochureWriter = brochureWriter;
+            _brochureCreator = brochureCreator;
             _sitecoreUtilities = sitecoreUtilities;
         }
 
@@ -36,7 +36,7 @@ namespace MikeRobbins.Seshat.Repositories
 
         public void Add(Brochure entity)
         {
-            _brochureWriter.SaveBrochure(entity);
+            _brochureCreator.CreateBrochure(entity);
         }
 
         public bool Exists(Brochure entity)

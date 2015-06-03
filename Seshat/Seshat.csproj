@@ -100,14 +100,14 @@
     <Compile Include="Controllers\BrochureController.cs" />
     <Compile Include="DataAccess\BrochureUpdater.cs" />
     <Compile Include="DataAccess\BrochureReader.cs" />
-    <Compile Include="DataAccess\BrochureWriter.cs" />
+    <Compile Include="DataAccess\BrochureCreator.cs" />
     <Compile Include="DataAccess\ConfigurationReader.cs" />
     <Compile Include="DataAccess\FieldUpdater.cs" />
     <Compile Include="Interfaces\IBrochureUpdater.cs" />
     <Compile Include="Interfaces\IFieldUpdater.cs" />
     <Compile Include="Interfaces\IItemReader.cs" />
     <Compile Include="DataAccess\ItemReader.cs" />
-    <Compile Include="Interfaces\IBrochureWriter.cs" />
+    <Compile Include="Interfaces\IBrochureCreator.cs" />
     <Compile Include="Export\ExportToPdf.cs" />
     <Compile Include="Interfaces\IExport.cs" />
     <Compile Include="Interfaces\IConfigurationReader.cs" />

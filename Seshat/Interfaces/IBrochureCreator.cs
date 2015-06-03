@@ -2,8 +2,8 @@
 
 namespace MikeRobbins.Seshat.Interfaces
 {
-    public interface IBrochureWriter
+    public interface IBrochureCreator
     {
-        void SaveBrochure(Brochure brochure);
+        void CreateBrochure(Brochure brochure);
     }
 }

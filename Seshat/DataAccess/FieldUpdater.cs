@@ -51,6 +51,12 @@ namespace MikeRobbins.Seshat.DataAccess
             {
                 field.Value = DateUtil.ToIsoDate(((DateTime)value));
             }
+            else if (field.Type == "Treelist" && typeof(List<Guid>) == value.GetType())
+            {
+                var list = (List<Guid>)value;
+
+                field.Value = list.Select(x => x.ToString()).Aggregate((c, n) => c + "|" + n);
+            }
             else
             {
                 field.Value = value.ToString();
