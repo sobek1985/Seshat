@@ -53,43 +53,6 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
             }
         },
 
-        SaveBrochure: function () {
-
-            var id = this.GetParameterByName('id');
-
-            if (id !== "") {
-                this.UpdateBrochure(id);
-
-            } else {
-                this.CreateBrochure();
-            }
-        },
-
-        UpdateBrochure: function (id) {
-            var brochureService = this.EntityServiceConfig();
-
-            var self = this;
-
-            brochureService.fetchEntity(id).execute().then(function (brochure) {
-
-                brochure.Title = self.tbTitle.viewModel.text();
-                brochure.Introduction = self.tbIntroduction.viewModel.text();
-                brochure.CaseStudy = self.tvCaseStudy.viewModel.checkedItemIds();
-                brochure.Images = self.tvImageGallery.viewModel.checkedItemIds().split("|");
-                brochure.Date = self.dpDate.viewModel.getDate();
-
-                brochure.on('save', function () {
-                    self.UpdateSuccessful(self);
-                });
-
-                brochure.save().execute();
-            });
-        },
-
-        UpdateSuccessful: function(self) {
-            self.messageBar.addMessage("notification", { text: "Item updated successfully", actions: [], closable: true, temporary: true });
-        },
-
         CreateBrochure: function () {
             var brochureService = this.EntityServiceConfig();
 
@@ -119,9 +82,44 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
 
         },
 
-        ExportPdf: function () {
+        UpdateBrochure: function (id) {
             var brochureService = this.EntityServiceConfig();
 
+            var self = this;
+
+            brochureService.fetchEntity(id).execute().then(function (brochure) {
+
+                brochure.Title = self.tbTitle.viewModel.text();
+                brochure.Introduction = self.tbIntroduction.viewModel.text();
+                brochure.CaseStudy = self.tvCaseStudy.viewModel.checkedItemIds();
+                brochure.Images = self.tvImageGallery.viewModel.checkedItemIds().split("|");
+                brochure.Date = self.dpDate.viewModel.getDate();
+
+                brochure.on('save', function () {
+                    self.UpdateSuccessful(self);
+                });
+
+                brochure.save().execute();
+            });
+        },
+
+        UpdateSuccessful: function (self) {
+            self.messageBar.addMessage("notification", { text: "Item updated successfully", actions: [], closable: true, temporary: true });
+        },
+
+        SaveBrochure: function () {
+
+            var id = this.GetParameterByName('id');
+
+            if (id !== "") {
+                this.UpdateBrochure(id);
+
+            } else {
+                this.CreateBrochure();
+            }
+        },
+
+        ExportPdf: function () {
             var brochure = {
                 Title: this.tbTitle.viewModel.text(),
                 Introduction: this.tbIntroduction.viewModel.text(),

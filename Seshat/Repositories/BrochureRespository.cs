@@ -4,10 +4,11 @@ using MikeRobbins.Seshat.Interfaces;
 using MikeRobbins.Seshat.Models;
 using Sitecore.Data;
 using Sitecore.Data.Items;
+using Sitecore.Services.Core;
 
 namespace MikeRobbins.Seshat.Repositories
 {
-    public class BrochureRespository : Sitecore.Services.Core.IRepository<Brochure>
+    public class BrochureRespository : IRepository<Brochure>
     {
         private IBrochureReader _brochureReader;
         private IBrochureUpdater _brochureUpdater;

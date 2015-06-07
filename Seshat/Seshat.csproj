@@ -134,7 +134,9 @@
     <None Include="client\MikeRobbins\Seshat\Tiles\BrochureTile.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="sitecore\shell\client\MikeRobbins\Seshat\Tiles\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="sitecore\shell\client\MikeRobbins\lib\unit.js" />
     <Content Include="sitecore\shell\client\Services\Assets\lib\extensions\validators\notPastDate.js" />

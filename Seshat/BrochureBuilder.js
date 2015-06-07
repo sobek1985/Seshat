@@ -33,12 +33,6 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
             });
         },
 
-        EditBrochure: function () {
-            var selectedItemId = this.lcBrochure.viewModel.selectedItemId();
-
-            window.location = location.protocol + '//' + location.hostname + "/sitecore/client/MikeRobbins/Applications/Seshat/BrochureTemplate?id=" + selectedItemId;
-        },
-
         DeleteBrochure: function () {
             var brochureService = this.EntityServiceConfig();
 
@@ -52,7 +46,15 @@ define(["sitecore", "jquery", "underscore", "entityService"], function (Sitecore
                     self.GetBrochures();
                 });
             });
-        }
+        },
+
+        EditBrochure: function () {
+            var selectedItemId = this.lcBrochure.viewModel.selectedItemId();
+
+            window.location = location.protocol + '//' + location.hostname + "/sitecore/client/MikeRobbins/Applications/Seshat/BrochureTemplate?id=" + selectedItemId;
+        },
+
+
 
 
     });

@@ -1,6 +1,7 @@
 ﻿using MikeRobbins.Seshat.DataAccess;
 using MikeRobbins.Seshat.Export;
 using MikeRobbins.Seshat.Mapper;
+using MikeRobbins.Seshat.Models;
 using MikeRobbins.Seshat.Utilities;
 using Sitecore.Services.Core;
 
@@ -17,7 +18,7 @@ namespace MikeRobbins.Seshat.IoC
             For<Interfaces.ISitecoreUtilities>().Use<SitecoreUtilities>();
             For<Interfaces.IConfigurationReader>().Use<ConfigurationReader>().Singleton();
             For<Interfaces.IItemMapper>().Use<ItemMapper>();
-            For(typeof(IRepository<>)).Use(typeof(MikeRobbins.Seshat.Repositories.BrochureRespository));
+            For(typeof(IRepository<Brochure>)).Use(typeof(MikeRobbins.Seshat.Repositories.BrochureRespository));
             For<Interfaces.IExport>().Use<ExportToPdf>();
             For<Interfaces.IItemReader>().Use<ItemReader>();
             For<Interfaces.IBrochureUpdater>().Use<BrochureUpdater>();
