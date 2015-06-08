@@ -47,8 +47,9 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                     self.tbIntroduction.viewModel.text(brochure.Introduction);
 
                     //  TODO: Wire these up                  self.tvCaseStudy
-                    //      self.tvImages
-                    self.dpDate.set(brochure.Date);
+
+                    var date = new Date(brochure.Date);
+                    self.dpDate.set("date", Sitecore.Helpers.date.toISO(date));
                 });
             }
         },
@@ -144,7 +145,7 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                 results = regex.exec(location.search);
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
+        },
     });
 
     return BrochureBuilderCreate;
