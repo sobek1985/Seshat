@@ -12,7 +12,7 @@ namespace MikeRobbins.Seshat.Models
             get { return Id; }
         }
 
-        public string ImagePath { get; set; }
+        public string Icon { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -21,7 +21,7 @@ namespace MikeRobbins.Seshat.Models
 
         public Guid CaseStudy { get; set; }
 
-        public List<Guid> Images { get; set; }
+        public Guid Image { get; set; }
 
         [NotPastDate(ErrorMessage = "Date must be in the past")]
         public DateTime Date { get; set; }

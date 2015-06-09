@@ -61,7 +61,7 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                 Title: this.tbTitle.viewModel.text(),
                 Introduction: this.tbIntroduction.viewModel.text(),
                 CaseStudy: this.tvCaseStudy.viewModel.checkedItemIds(),
-                Images: this.tvImageGallery.viewModel.checkedItemIds().split("|"),
+                Images: this.tvImageGallery.viewModel.checkedItemIds(),
                 Date: this.dpDate.viewModel.getDate()
             };
 

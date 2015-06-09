@@ -23,10 +23,10 @@ namespace MikeRobbins.Seshat.Mapper
 
             brochure.Id = item.ID.ToString();
             brochure.Url = item.Paths.ContentPath;
-            brochure.CaseStudy = ((Sitecore.Data.Fields.LookupField) item.Fields["CaseStudy"]).TargetID.Guid;
-            brochure.Images = ((Sitecore.Data.Fields.MultilistField)item.Fields["Images"]).TargetIDs.Select(x=> x.Guid).ToList();
+            brochure.CaseStudy = ((Sitecore.Data.Fields.LookupField)item.Fields["CaseStudy"]).TargetID.Guid;
+            brochure.Image = ((Sitecore.Data.Fields.LookupField)item.Fields["Images"]).TargetID.Guid;
             brochure.Introduction = item["Introduction"];
-            brochure.ImagePath = "/temp/IconCache/" +item.Appearance.Icon;
+            brochure.Icon = "/temp/IconCache/" + item.Appearance.Icon;
 
             return brochure;
         }

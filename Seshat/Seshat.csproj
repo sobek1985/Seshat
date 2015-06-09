@@ -131,12 +131,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="client\MikeRobbins\Seshat\Tiles\BrochureTile.cshtml" />
+    <None Include="sitecore\shell\client\MikeRobbins\Seshat\Tiles\BrochureTile.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="sitecore\shell\client\MikeRobbins\Seshat\Tiles\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="sitecore\shell\client\MikeRobbins\lib\unit.js" />
     <Content Include="sitecore\shell\client\Services\Assets\lib\extensions\validators\notPastDate.js" />
