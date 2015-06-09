@@ -46,8 +46,8 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                     self.tbTitle.viewModel.text(brochure.Title);
                     self.tbIntroduction.viewModel.text(brochure.Introduction);
 
-                    //  TODO: Wire these up                  self.tvCaseStudy
-
+                    //  TODO: Wire up treelists. With Sitecore Support to setter not available
+                    
                     var date = new Date(brochure.Date);
                     self.dpDate.set("date", Sitecore.Helpers.date.toISO(date));
                 });
@@ -93,7 +93,7 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                 brochure.Title = self.tbTitle.viewModel.text();
                 brochure.Introduction = self.tbIntroduction.viewModel.text();
                 brochure.CaseStudy = self.tvCaseStudy.viewModel.checkedItemIds();
-                brochure.Images = self.tvImageGallery.viewModel.checkedItemIds().split("|");
+                brochure.Images = self.tvImageGallery.viewModel.checkedItemIds();
                 brochure.Date = self.dpDate.viewModel.getDate();
 
                 brochure.on('save', function () {
