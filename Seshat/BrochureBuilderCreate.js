@@ -68,9 +68,6 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
             var self = this;
 
             brochureService.create(brochure).execute().then(function (newBrochure) {
-                newBrochure.should.be.an.instanceOf(entityService.Entity);
-                newBrochure.isNew.should.be.false; // this is because its created by the server rather than JS, so its not new.
-                newBrochure.should.have.a.property("Title").and.be.an.String;
 
                 self.messageBar.addMessage("notification", { text: "Item created successfully", actions: [], closable: true, temporary: true });
 
@@ -121,8 +118,8 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
             var brochure = {
                 Title: this.tbTitle.viewModel.text(),
                 Introduction: this.tbIntroduction.viewModel.text(),
-                Image: this.tvCaseStudy.viewModel.checkedItemIds(),
-                ImageGallery: this.tvImageGallery.viewModel.checkedItemIds()
+                CaseStudy: this.tvCaseStudy.viewModel.checkedItemIds(),
+                Image: this.tvImageGallery.viewModel.checkedItemIds()
             };
 
             $.ajax({
