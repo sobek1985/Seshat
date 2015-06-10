@@ -10,14 +10,11 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
 
         initialize: function () {
             entityService.use(function (data, next) {
-                if (data.Id) {
-                    entityService.utils.request({ url: "/sitecore/api/ssc/MikeRobbins-Seshat-Controllers/Brochure/" + data.Id, type: "GET" }).then(function (res) {
-                        next(null, res);
-                    });
-                }
-                else {
-                    next(null, data);
-                }
+
+                data.timestamp = new Date().getTime();
+                next(null, data);
+
+
             });
         },
 
@@ -68,6 +65,11 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
             var self = this;
 
             brochureService.create(brochure).execute().then(function (newBrochure) {
+
+                newBrochure.should.be.an.instanceOf(entityService.Entity);
+                newBrochure.isNew.should.be.false; // this is because its created by the server rather than JS, so its not new.
+                newBrochure.should.have.a.property("Title").and.be.an.String;
+
 
                 self.messageBar.addMessage("notification", { text: "Item created successfully", actions: [], closable: true, temporary: true });
 
