@@ -61,7 +61,7 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                 Title: this.tbTitle.viewModel.text(),
                 Introduction: this.tbIntroduction.viewModel.text(),
                 CaseStudy: this.tvCaseStudy.viewModel.checkedItemIds(),
-                Images: this.tvImageGallery.viewModel.checkedItemIds(),
+                Image: this.tvImageGallery.viewModel.checkedItemIds(),
                 Date: this.dpDate.viewModel.getDate()
             };
 
@@ -121,7 +121,7 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
             var brochure = {
                 Title: this.tbTitle.viewModel.text(),
                 Introduction: this.tbIntroduction.viewModel.text(),
-                CaseStudy: this.tvCaseStudy.viewModel.checkedItemIds(),
+                Image: this.tvCaseStudy.viewModel.checkedItemIds(),
                 ImageGallery: this.tvImageGallery.viewModel.checkedItemIds()
             };
 
