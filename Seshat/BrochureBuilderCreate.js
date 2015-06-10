@@ -73,9 +73,6 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                 newBrochure.should.have.a.property("Title").and.be.an.String;
 
                 self.messageBar.addMessage("notification", { text: "Item created successfully", actions: [], closable: true, temporary: true });
-                self.ResetFields();
-                self.GetNewsArticles();
-
 
             }).fail(function (error) {
                 self.messageBar.addMessage("error", { text: error.message, actions: [], closable: true, temporary: true });

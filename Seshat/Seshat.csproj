@@ -145,7 +145,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Q /Y "$(TargetDir)$(TargetName).*" "C:\inetpub\wwwroot\MikeRobbins8u2\website\bin\"
-xcopy /Q /Y "$(ProjectDir)*.js" "C:\inetpub\wwwroot\MikeRobbins8u2\website\sitecore\shell\client\MikeRobbins\Seshat\"</PostBuildEvent>
+xcopy /Q /Y "$(ProjectDir)BrochureBuilder.js" "C:\inetpub\wwwroot\MikeRobbins8u2\website\sitecore\shell\client\MikeRobbins\Seshat\BrochureBuilder.js"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
