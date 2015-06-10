@@ -90,7 +90,7 @@ define(["sitecore", "jquery", "underscore", "entityService", "unit"], function (
                 brochure.Title = self.tbTitle.viewModel.text();
                 brochure.Introduction = self.tbIntroduction.viewModel.text();
                 brochure.CaseStudy = self.tvCaseStudy.viewModel.checkedItemIds();
-                brochure.Images = self.tvImageGallery.viewModel.checkedItemIds();
+                brochure.Image = self.tvImageGallery.viewModel.checkedItemIds();
                 brochure.Date = self.dpDate.viewModel.getDate();
 
                 brochure.on('save', function () {
